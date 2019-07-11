@@ -278,3 +278,16 @@ main {
         padding: 5px 20px;
     }
 }
+
+@media print {
+    body {
+        height: auto;
+        background: none;
+    }
+    header {
+        display: none;
+    }
+    .bottom-click {
+        display: none;
+    }
+}
