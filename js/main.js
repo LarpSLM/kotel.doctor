@@ -22,9 +22,10 @@ function cleanListTable(arg) {
         case 'brand-select':
             const modelDiv = document.querySelector('.model-select');
             modelDiv.value = '';
+        case 'model-select':
             const errorDiv = document.querySelector('.error-select');
             errorDiv.innerHTML = '';
-        case 'model-select':
+        case 'error-select':
             document.getElementById('value-table-one').innerHTML = '';
             document.getElementById('value-table-two').innerHTML = '';
             document.getElementById('value-table-three').innerHTML = '';
@@ -56,7 +57,8 @@ function renderModel(el, cleanValue) {
     modelDiv.value = '';
 }
 
-function renderError(el) {
+function renderError(el, cleanValue) {
+    cleanListTable(cleanValue);
     const errorId = el.value;
     const brandBoiler = el.dataset.brand;
     const model = Object.keys(base[brandBoiler][errorId]);
@@ -69,7 +71,6 @@ function renderError(el) {
 }
 
 function renderErrorDescription(arg1, arg2, arg3, arg4, arg5, arg6) {
-    cleanListTable('error-select');
     const errorValueTableOne = document.getElementById('value-table-one');
     const errorValueTableTwo = document.getElementById('value-table-two');
     const errorValueTableThree = document.getElementById('value-table-three');
@@ -84,7 +85,8 @@ function renderErrorDescription(arg1, arg2, arg3, arg4, arg5, arg6) {
     errorValueTableSix.innerHTML += renderTable(arg6);
 }
 
-function gettingArraysValues(el) {
+function gettingArraysValues(el, cleanValue) {
+    cleanListTable(cleanValue);
     const errorId = el.value;
     const brandBoiler = el.dataset.brand;
     const modelBoiler = el.dataset.model;
@@ -127,7 +129,8 @@ document.addEventListener('change', event => {
         eventCatched = true;
     } else if (event.target.classList.contains('error-select')) {
         const optionError = document.querySelector(`option.change-error-value[value="${event.target.value}"]`);
-        gettingArraysValues(optionError);
+        const defaultValue = 'error-select';
+        gettingArraysValues(optionError, defaultValue);
         eventCatched = true;
     }
     if (eventCatched === true) {
