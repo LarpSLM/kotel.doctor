@@ -1,0 +1,280 @@
+body {
+    background: url("../img/body.jpg");
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    color: #666;
+    font-size: 14px;
+}
+
+.container {
+    max-width: 1170px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+}
+
+main {
+    min-height: 600px;
+}
+
+.info-change {
+    width: 100%;
+    padding: 0 15px;
+    box-sizing: border-box;
+}
+
+.info-change p {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    color: #23a1d1;
+}
+
+.navbar {
+    width: 100%;
+    background: url("../img/navbar.jpg");
+    height: 330px;
+    border-radius: 15px;
+}
+
+.error-description {
+    text-align: center;
+    margin: 0 20px;
+    padding: 20px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    font-size: 21px;
+    color: #fff;
+    background-color: #0087c9;
+}
+
+/* Экспериментальный стиль  начало*/
+.select {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px 15px;
+}
+
+.select-brand,
+.select-model,
+.select-error {
+    display: inline-block;
+    /*min-width: 340px;*/
+    width: calc(100%/3);
+    vertical-align: top;
+}
+
+.label-style {
+    display: block;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+
+.select-brand select,
+.select-model select,
+.select-error select {
+    display: block;
+    margin: 0 auto;
+    width: 70%;
+    height: 35px;
+    text-align: center;
+    border-radius: 2px;
+    font-size: calc(1em + .3vw);
+    color: white;
+    font-weight: bold;
+    background: linear-gradient(to bottom, #23a1d1 0%,#005FA1 100%);
+    border: none;
+    box-shadow: 1px 1px 3px 0 #444444;
+}
+
+.select-brand select:focus,
+.select-model select:focus,
+.select-error select:focus {
+    box-shadow: 0 0 0 0.2rem rgba(38,143,255,.5);
+    border: none;
+    transition: 0.1s;
+}
+
+.select-brand select:hover,
+.select-model select:hover,
+.select-error select:hover {
+    opacity: 0.9;
+}
+
+.select-brand option,
+.select-model option,
+.select-error option {
+    color: #555;
+    font-weight: bold;
+    height: 35px;
+}
+
+/* Экспериментальный стиль  конец*/
+
+
+/* СТИЛИЗАЦИЯ ТАБЛИЦЫ */
+
+.render-list {
+    padding: 0 20px;
+    height: auto;
+}
+
+.render-list h1 {
+    text-align: center;
+    font-style: italic;
+    background: aliceblue;
+    padding: 20px;
+    margin: 0;
+}
+
+.render-list section {
+    border-top: 1px dashed #444;
+}
+
+.render-list section:last-child {
+    border-bottom: 1px dashed;
+}
+
+.left,
+.right {
+    display: inline-block;
+    height: auto;
+    vertical-align: top;
+}
+
+.left {
+    width: 30%;
+    color: #23a1d1;
+}
+
+.left h3 {
+    margin: 0;
+    padding: 5px 0;
+}
+
+.right {
+    width: 70%;
+    border-left: 1px dashed #444;
+    padding-left: 5px;
+    box-sizing: border-box;
+    min-height: 50px;
+}
+
+.right p {
+    width: 100%;
+    margin: 0;
+    padding: 5px 0;
+    text-align: justify;
+    color: black;
+    font-size: calc(1em + 0.2vw);
+}
+
+.hidden {
+    display: none;
+}
+
+.bottom-click {
+    display: flex;
+    max-width: 1170px;
+    margin: 0 auto;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.print,
+.callspec {
+    display: block;
+    width: 150px;
+    height: 35px;
+    text-align: center;
+    border-radius: 2px;
+    font-size: calc(1em + .3vw);
+    color: white;
+    font-weight: bold;
+    background: linear-gradient(to bottom, #23a1d1 0%,#005FA1 100%);
+    border: none;
+    box-shadow: 1px 1px 3px 0 #444444;
+}
+
+.callspec {
+    width: 250px;
+    text-decoration: none;
+    cursor: pointer;
+    line-height: 35px;
+}
+
+.print:hover,
+.callspec:hover {
+    opacity: 0.9;
+}
+
+.print:active,
+.callspec:active {
+    box-shadow: none;
+    transition: .2ms;
+}
+
+
+@media (min-width: 650px) and (max-width: 1100px) {
+    .select-brand,
+    .select-model,
+    .select-error {
+        width: calc(100% /3);
+    }
+
+    .select-brand select,
+    .select-model select,
+    .select-error select {
+        width: 95%;
+    }
+}
+
+@media screen and (max-width: 649px) {
+    .select-brand,
+    .select-model,
+    .select-error {
+        display: block;
+        width: 100%;
+    }
+
+    .label-style {
+        padding: 5px 0;
+    }
+
+    .left,
+    .right {
+        display: block;
+        width: 100%;
+    }
+
+    .right {
+        border-top: 1px dashed;
+        border-left: none;
+    }
+
+    .render-list h1 {
+        background: none;
+    }
+
+    .render-list h3 {
+        background-color: aliceblue;
+    }
+
+    .print {
+        margin-right: 5px;
+    }
+}
+
+@media screen and (max-width: 380px) {
+    .select-brand select,
+    .select-model select,
+    .select-error select {
+        width: 95%;
+    }
+
+    .select {
+        padding: 5px 20px;
+    }
+}

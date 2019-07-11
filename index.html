@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Stage One</title>
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/array.js"></script>
+</head>
+<body>
+<div class="container">
+    <header>
+        <div class="navbar"></div>
+    </header>
+    <main id="print-errors">
+        <h1 class="error-description">Онлайн поиск ошибок</h1>
+        <div class="select">
+            <div class="select-brand">
+                <label for="brand" class="label-style">Выберите бренд</label>
+                <select id="brand" name="brand" class="brand-select"></select>
+            </div><div class="select-model">
+                <label for="model" class="label-style">Выберите модель</label>
+                <select name="model" id="model" class="model-select"></select>
+            </div><div class="select-error">
+                <label for="error" class="label-style">Выберите ошибку</label>
+                <select name="error" id="error" class="error-select"></select>
+            </div>
+        </div>
+        <div class="render-list">
+            <h1>Информация по ошибке</h1>
+            <section>
+                <div class="left">
+                    <h3>Модель</h3>
+                </div><div class="right" id="value-table-one"></div>
+            </section>
+            <section>
+                <div class="left">
+                    <h3>Код ошибки</h3>
+                </div><div class="right" id="value-table-two"></div>
+            </section>
+            <section>
+                <div class="left">
+                    <h3>Описание неисправности</h3>
+                </div><div class="right" id="value-table-three"></div>
+            </section>
+            <section>
+                <div class="left">
+                    <h3>Описание простым языком</h3>
+                </div><div class="right" id="value-table-four"></div>
+            </section>
+            <section>
+                <div class="left">
+                    <h3>Меры по устранению (инструкция)</h3>
+                </div><div class="right" id="value-table-five"></div>
+            </section>
+            <section>
+                <div class="left">
+                    <h3>Коментарии и советы специалиста</h3>
+                </div><div class="right" id="value-table-six"></div>
+            </section>
+        </div>
+    </main>
+    <footer class="bottom-click">
+        <button class="print" onclick="window.print()">На печать</button>
+        <a href="https://kotel.doctor/contact-us/" class="callspec">Оставить заявку</a>
+    </footer>
+</div>
+<script src="js/main.js"></script>
+</body>
+</html>
