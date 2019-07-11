@@ -14,6 +14,25 @@ function createErrorElement(name, brand, model) {
 
 function renderTable(name) {
     return `<p>${name}</p>`
+
+}
+
+function cleanListTable(arg) {
+    switch (arg) {
+        case 'brand-select':
+            const modelDiv = document.querySelector('.model-select');
+            modelDiv.value = '';
+            const errorDiv = document.querySelector('.error-select');
+            errorDiv.innerHTML = '';
+        case 'model-select':
+            document.getElementById('value-table-one').innerHTML = '';
+            document.getElementById('value-table-two').innerHTML = '';
+            document.getElementById('value-table-three').innerHTML = '';
+            document.getElementById('value-table-four').innerHTML = '';
+            document.getElementById('value-table-five').innerHTML = '';
+            document.getElementById('value-table-six').innerHTML = '';
+            break;
+    }
 }
 
 
@@ -25,7 +44,7 @@ function renderBrand() {
     brandsDiv.value = '';
 }
 
-function renderModel(el) {
+function renderModel(el, cleanValue) {
     const brandBoiler = el.value;
     const model = Object.keys(base[brandBoiler]);
     const modelDiv = document.querySelector('.model-select');
@@ -33,6 +52,7 @@ function renderModel(el) {
     model.forEach(models => {
         modelDiv.innerHTML += createModelElement(models, brandBoiler);
     });
+    cleanListTable(cleanValue);
     modelDiv.value = '';
 }
 
@@ -48,60 +68,68 @@ function renderError(el) {
     errorDiv.value = '';
 }
 
-function renderErrorDescription(el) {
+function renderErrorDescription(arg1, arg2, arg3, arg4, arg5, arg6) {
+    cleanListTable('error-select');
+    const errorValueTableOne = document.getElementById('value-table-one');
+    const errorValueTableTwo = document.getElementById('value-table-two');
+    const errorValueTableThree = document.getElementById('value-table-three');
+    const errorValueTableFour = document.getElementById('value-table-four');
+    const errorValueTableFive = document.getElementById('value-table-five');
+    const errorValueTableSix = document.getElementById('value-table-six');
+    errorValueTableOne.innerHTML += renderTable(arg1);
+    errorValueTableTwo.innerHTML += renderTable(arg2);
+    errorValueTableThree.innerHTML += renderTable(arg3);
+    errorValueTableFour.innerHTML += renderTable(arg4);
+    errorValueTableFive.innerHTML += renderTable(arg5);
+    errorValueTableSix.innerHTML += renderTable(arg6);
+}
+
+function gettingArraysValues(el) {
     const errorId = el.value;
     const brandBoiler = el.dataset.brand;
     const modelBoiler = el.dataset.model;
-    const dataTable = {
-        'value-table-one': modelBoiler,
-        'value-table-two': errorId,
-        'value-table-three': base[brandBoiler][modelBoiler][errorId]['0'],
-        'value-table-four': base[brandBoiler][modelBoiler][errorId]['1'],
-        'value-table-five': base[brandBoiler][modelBoiler][errorId]['2'],
-        'value-table-': base[brandBoiler][modelBoiler][errorId]['3']
-    };
-    const dataTableId = Object.keys(dataTable);
-    console.log(dataTableId);
-    function errorDescription(Obj) {
-        Obj.forEach(reback => {
-            const errorDivId = document.getElementById(reback);
-            errorDivId.innerHTML = '';
-            errorDivId.innerHTML += renderTable(dataTable[reback]);
-        });
+    const tableSectionThee = base[brandBoiler][modelBoiler][errorId]['0'];
+    const tableSectionFour = base[brandBoiler][modelBoiler][errorId]['1'];
+    const tableSectionFive = base[brandBoiler][modelBoiler][errorId]['2'];
+    const tableSectionSix = base[brandBoiler][modelBoiler][errorId]['3'];
+    function checkingTableSectionFour(arg1) {
+        if (arg1 === '') {
+            return 'Информация уточняется'
+        } else {
+            return arg1;
+        }
     }
-    errorDescription(dataTableId)
+    function cheakingTagleSectionSix(variable) {
+        if (variable === '') {
+            return 'Комментарий сервис-инженера в разработке. Нужен срочный совет? Звоните!'
+        } else {
+            return variable;
+        }
+
+    }
+    renderErrorDescription(brandBoiler, modelBoiler, tableSectionThee, checkingTableSectionFour(tableSectionFour), tableSectionFive, cheakingTagleSectionSix(tableSectionSix));
 }
 
 renderBrand();
+
 
 document.addEventListener('change', event => {
     let eventCatched = false;
 
     if (event.target.classList.contains('brand-select')) {
-        renderModel(event.target);
+        const defaultValue = 'brand-select';
+        renderModel(event.target, defaultValue);
         eventCatched = true;
     } else if (event.target.classList.contains('model-select')) {
         const optionModel = document.querySelector(`option.change-model-value[value="${event.target.value}"]`);
-        renderError(optionModel);
+        const defaultValue = 'model-select';
+        renderError(optionModel, defaultValue);
         eventCatched = true;
     } else if (event.target.classList.contains('error-select')) {
         const optionError = document.querySelector(`option.change-error-value[value="${event.target.value}"]`);
-        renderErrorDescription(optionError);
+        gettingArraysValues(optionError);
         eventCatched = true;
     }
-    // if (event.target.classList.contains('change-brand-value')) {
-    //     renderModel(event.target);
-    //     eventCatched = true;
-    // }
-    // if (event.target.classList.contains('change-model-value')) {
-    //     renderError(event.target);
-    //     eventCatched = true;
-    // }
-    // if (event.target.classList.contains('change-error-value')) {
-    //     renderErrorDescription(event.target);
-    //     eventCatched = true;
-    // }
-
     if (eventCatched === true) {
         event.preventDefault();
         return;
