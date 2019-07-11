@@ -101,7 +101,7 @@ function gettingArraysValues(el, cleanValue) {
             return arg1;
         }
     }
-    function cheakingTagleSectionSix(variable) {
+    function checkingTableSectionSix(variable) {
         if (variable === '') {
             return 'Комментарий сервис-инженера в разработке. Нужен срочный совет? Звоните!'
         } else {
@@ -109,7 +109,7 @@ function gettingArraysValues(el, cleanValue) {
         }
 
     }
-    renderErrorDescription(brandBoiler, modelBoiler, tableSectionThee, checkingTableSectionFour(tableSectionFour), tableSectionFive, cheakingTagleSectionSix(tableSectionSix));
+    renderErrorDescription(modelBoiler, errorId, tableSectionThee, checkingTableSectionFour(tableSectionFour), tableSectionFive, checkingTableSectionSix(tableSectionSix));
 }
 
 renderBrand();
