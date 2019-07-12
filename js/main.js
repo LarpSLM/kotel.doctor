@@ -74,7 +74,7 @@ function renderError(el, cleanValue) {
             const nameKey = base[brandBoiler][errorId][errors]["remade"];
             const remade = document.getElementById('remade');
             remade.innerHTML = '';
-            remade.innerHTML = `<h3>Описание ошибки</h3>`;
+            remade.innerHTML = `<h3>Индикация системы управления</h3>`;
             errorDiv.innerHTML += createErrorElement(errors, brandBoiler, errorId, nameKey);
         } else {
             errorDiv.innerHTML += createErrorElement(errors, brandBoiler, errorId);
