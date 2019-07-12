@@ -19,14 +19,15 @@
         <h1 class="error-description">Онлайн поиск ошибок</h1>
         <div class="select">
             <div class="select-brand">
-                <label for="brand" class="label-style">Выберите бренд</label>
+                <label for="brand" class="label-style">Бренд </label>
                 <select id="brand" name="brand" class="brand-select"></select>
             </div><div class="select-model">
-                <label for="model" class="label-style">Выберите модель</label>
+                <label for="model" class="label-style">Модель или система управления </label>
                 <select name="model" id="model" class="model-select"></select>
             </div><div class="select-error">
-                <label for="error" class="label-style">Выберите ошибку</label>
-                <select name="error" id="error" class="error-select"></select>
+                <label for="error" class="label-style">Ошибка</label>
+                <select name="error" id="error" class="error-select">
+                </select>
             </div>
         </div>
         <div class="render-list">
@@ -37,7 +38,7 @@
                 </div><div class="right" id="value-table-one"></div>
             </section>
             <section>
-                <div class="left">
+                <div class="left" id="remade">
                     <h3>Код ошибки</h3>
                 </div><div class="right" id="value-table-two"></div>
             </section>

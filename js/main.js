@@ -8,8 +8,13 @@ function createModelElement(name, brand) {
     return `<option value="${name}" class="change-model-value" id="${name}" data-brand="${brand}">${name}</option>`
 }
 
-function createErrorElement(name, brand, model) {
-    return `<option value="${name}" class="change-error-value" id="${name}" data-brand="${brand}" data-model="${model}">${name}</option>`
+function createErrorElement(name, brand, model, description) {
+    if (description) {
+        return `<option value="${name}" class="change-error-value" id="${name}" data-brand="${brand}" data-model="${model}">${description}</option>`
+    } else {
+        return `<option value="${name}" class="change-error-value" id="${name}" data-brand="${brand}" data-model="${model}">${name}</option>`
+    }
+
 }
 
 function renderTable(name) {
@@ -65,7 +70,16 @@ function renderError(el, cleanValue) {
     const errorDiv = document.querySelector('.error-select');
     errorDiv.innerHTML = '';
     model.forEach(errors => {
-        errorDiv.innerHTML += createErrorElement(errors, brandBoiler, errorId);
+        if (base[brandBoiler][errorId][errors]["remade"]) {
+            const nameKey = base[brandBoiler][errorId][errors]["remade"];
+            const remade = document.getElementById('remade');
+            remade.innerHTML = '';
+            remade.innerHTML = `<h3>Описание ошибки</h3>`;
+            errorDiv.innerHTML += createErrorElement(errors, brandBoiler, errorId, nameKey);
+        } else {
+            errorDiv.innerHTML += createErrorElement(errors, brandBoiler, errorId);
+        }
+
     });
     errorDiv.value = '';
 }
@@ -87,9 +101,10 @@ function renderErrorDescription(arg1, arg2, arg3, arg4, arg5, arg6) {
 
 function gettingArraysValues(el, cleanValue) {
     cleanListTable(cleanValue);
-    const errorId = el.value;
+    let errorId = el.value;
     const brandBoiler = el.dataset.brand;
     const modelBoiler = el.dataset.model;
+
     const tableSectionThee = base[brandBoiler][modelBoiler][errorId]['0'];
     const tableSectionFour = base[brandBoiler][modelBoiler][errorId]['1'];
     const tableSectionFive = base[brandBoiler][modelBoiler][errorId]['2'];
@@ -107,9 +122,17 @@ function gettingArraysValues(el, cleanValue) {
         } else {
             return variable;
         }
-
     }
-    renderErrorDescription(modelBoiler, errorId, tableSectionThee, checkingTableSectionFour(tableSectionFour), tableSectionFive, checkingTableSectionSix(tableSectionSix));
+    function convertname() {
+        if (base[brandBoiler][modelBoiler][errorId]["remade"]) {
+            let newErrorId;
+            newErrorId = base[brandBoiler][modelBoiler][errorId]["remade"];
+            return errorId = newErrorId;
+        } else {
+            return errorId;
+        }
+    }
+    renderErrorDescription(modelBoiler, convertname(), tableSectionThee, checkingTableSectionFour(tableSectionFour), tableSectionFive, checkingTableSectionSix(tableSectionSix));
 }
 
 renderBrand();
