@@ -82,6 +82,7 @@ function renderError(el, cleanValue) {
 
     });
     errorDiv.value = '';
+    sortOption('error');
 }
 
 function renderErrorDescription(arg1, arg2, arg3, arg4, arg5, arg6) {
@@ -161,3 +162,22 @@ document.addEventListener('change', event => {
         return;
     }
 });
+
+// СОРТИРОВКА СПИСКОВ //
+
+function sortOption(arg) {
+    let wrapper = document.getElementById(arg),
+        nodes = wrapper.getElementsByTagName("OPTION"),
+        len = nodes.length,
+        sorted = [];
+    while (nodes[0]) {
+        sorted.push(new String(nodes[0].value));
+        sorted[sorted.length-1].element = nodes[0];
+        wrapper.removeChild(nodes[0]);
+    }
+    sorted = sorted.sort();
+    for (let i = 0; i < len; i++) {
+        wrapper.appendChild(sorted[i].element);
+    }
+}
+
