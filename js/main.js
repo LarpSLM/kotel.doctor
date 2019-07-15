@@ -81,8 +81,8 @@ function renderError(el, cleanValue) {
         }
 
     });
+    // sortOption('error');
     errorDiv.value = '';
-    sortOption('error');
 }
 
 function renderErrorDescription(arg1, arg2, arg3, arg4, arg5, arg6) {
