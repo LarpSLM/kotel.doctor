@@ -14,12 +14,10 @@ function createErrorElement(name, brand, model, description) {
     } else {
         return `<option value="${name}" class="change-error-value" id="${name}" data-brand="${brand}" data-model="${model}">${name}</option>`
     }
-
 }
 
 function renderTable(name) {
     return `<p>${name}</p>`
-
 }
 
 function cleanListTable(arg) {
@@ -47,6 +45,7 @@ function renderBrand() {
     baseKeys.forEach(brand => {
         brandsDiv.innerHTML += createBrandElement(brand);
     });
+    sortOption('brand');
     brandsDiv.value = '';
 }
 
@@ -79,7 +78,6 @@ function renderError(el, cleanValue) {
         } else {
             errorDiv.innerHTML += createErrorElement(errors, brandBoiler, errorId);
         }
-
     });
     // sortOption('error');
     errorDiv.value = '';
@@ -136,8 +134,23 @@ function gettingArraysValues(el, cleanValue) {
     renderErrorDescription(modelBoiler, convertname(), tableSectionThee, checkingTableSectionFour(tableSectionFour), tableSectionFive, checkingTableSectionSix(tableSectionSix));
 }
 
-renderBrand();
+// СОРТИРОВКА СПИСКОВ //
 
+function sortOption(arg) {
+    let wrapper = document.getElementById(arg),
+        nodes = wrapper.getElementsByTagName("OPTION"),
+        len = nodes.length,
+        sorted = [];
+    while (nodes[0]) {
+        sorted.push(new String(nodes[0].value));
+        sorted[sorted.length-1].element = nodes[0];
+        wrapper.removeChild(nodes[0]);
+    }
+    sorted = sorted.sort();
+    for (let i = 0; i < len; i++) {
+        wrapper.appendChild(sorted[i].element);
+    }
+}
 
 document.addEventListener('change', event => {
     let eventCatched = false;
@@ -163,21 +176,6 @@ document.addEventListener('change', event => {
     }
 });
 
-// СОРТИРОВКА СПИСКОВ //
+renderBrand();
 
-function sortOption(arg) {
-    let wrapper = document.getElementById(arg),
-        nodes = wrapper.getElementsByTagName("OPTION"),
-        len = nodes.length,
-        sorted = [];
-    while (nodes[0]) {
-        sorted.push(new String(nodes[0].value));
-        sorted[sorted.length-1].element = nodes[0];
-        wrapper.removeChild(nodes[0]);
-    }
-    sorted = sorted.sort();
-    for (let i = 0; i < len; i++) {
-        wrapper.appendChild(sorted[i].element);
-    }
-}
 
