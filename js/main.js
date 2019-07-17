@@ -178,4 +178,10 @@ document.addEventListener('change', event => {
 
 renderBrand();
 
+// '': {
+//     '0': '',
+//         '1': '',
+//         '2': '',
+//         '3': '',
+// },
 
