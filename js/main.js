@@ -10,7 +10,7 @@ function createModelElement(name, brand) {
 
 function createErrorElement(name, brand, model, description) {
     if (description) {
-        return `<option value="${name}" class="change-error-value" id="${name}" data-brand="${brand}" data-model="${model}">${description}</option>`
+        return `<option value="${name}" class="change-error-value" id="${name}" data-brand="${brand}" data-model="${model}" data-description="${description}">${description}</option>`
     } else {
         return `<option value="${name}" class="change-error-value" id="${name}" data-brand="${brand}" data-model="${model}">${name}</option>`
     }
@@ -76,7 +76,7 @@ function renderError(el, cleanValue) {
             errorDiv.innerHTML += createErrorElement(errors, brandBoiler, errorId);
         }
     });
-    // sortOption('error');
+    sortOption('error');
     errorDiv.value = '';
 }
 
@@ -100,7 +100,6 @@ function gettingArraysValues(el, cleanValue) {
     let errorId = el.value;
     const brandBoiler = el.dataset.brand;
     const modelBoiler = el.dataset.model;
-
     const tableSectionThee = base[brandBoiler][modelBoiler][errorId]['0'];
     const tableSectionFour = base[brandBoiler][modelBoiler][errorId]['1'];
     const tableSectionFive = base[brandBoiler][modelBoiler][errorId]['2'];
@@ -119,7 +118,7 @@ function gettingArraysValues(el, cleanValue) {
             return variable;
         }
     }
-    function convertname() {
+    function convertName() {
         if (base[brandBoiler][modelBoiler][errorId]["remade"]) {
             let newErrorId;
             newErrorId = base[brandBoiler][modelBoiler][errorId]["remade"];
@@ -128,7 +127,7 @@ function gettingArraysValues(el, cleanValue) {
             return errorId;
         }
     }
-    renderErrorDescription(modelBoiler, convertname(), tableSectionThee, checkingTableSectionFour(tableSectionFour), tableSectionFive, checkingTableSectionSix(tableSectionSix));
+    renderErrorDescription(modelBoiler, convertName(), tableSectionThee, checkingTableSectionFour(tableSectionFour), tableSectionFive, checkingTableSectionSix(tableSectionSix));
 }
 
 // СОРТИРОВКА СПИСКОВ //
@@ -139,7 +138,11 @@ function sortOption(arg) {
         len = nodes.length,
         sorted = [];
     while (nodes[0]) {
-        sorted.push(new String(nodes[0].value));
+        if (arg === 'error') {
+            sorted.push(new String(nodes[0].dataset.description));
+        } else {
+            sorted.push(new String(nodes[0].value));
+        }
         sorted[sorted.length-1].element = nodes[0];
         wrapper.removeChild(nodes[0]);
     }
