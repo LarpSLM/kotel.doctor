@@ -58,6 +58,7 @@ function renderModel(el, cleanValue) {
         modelDiv.innerHTML += createModelElement(models, brandBoiler);
     });
     cleanListTable(cleanValue);
+    sortOption('model');
     modelDiv.value = '';
 }
 

@@ -40334,7 +40334,7 @@ const base = {
             },
 
         },
-    }
+    },
     'Thermona': {
         'THERM 24 KDN, KDZN, KDCN': {
             'Er01': {
