@@ -24,10 +24,10 @@ function cleanListTable(arg) {
     switch (arg) {
         case 'brand-select':
             const modelDiv = document.querySelector('.model-select');
-            modelDiv.value = '';
+            modelDiv.value = '1 default';
         case 'model-select':
             const errorDiv = document.querySelector('.error-select');
-            errorDiv.innerHTML = '';
+            errorDiv.innerHTML = '<option disabled selected value="1 default">-- выберите --</option>';
         case 'error-select':
             document.getElementById('value-table-one').innerHTML = '';
             document.getElementById('value-table-two').innerHTML = '';
@@ -46,20 +46,20 @@ function renderBrand() {
         brandsDiv.innerHTML += createBrandElement(brand);
     });
     sortOption('brand');
-    brandsDiv.value = '';
+    brandsDiv.value = '1 default';
 }
 
 function renderModel(el, cleanValue) {
     const brandBoiler = el.value;
     const model = Object.keys(base[brandBoiler]);
     const modelDiv = document.querySelector('.model-select');
-    modelDiv.innerHTML = '';
+    modelDiv.innerHTML = '<option disabled value="1 default">-- выберите --</option>';
     model.forEach(models => {
         modelDiv.innerHTML += createModelElement(models, brandBoiler);
     });
     cleanListTable(cleanValue);
     sortOption('model');
-    modelDiv.value = '';
+    modelDiv.value = '1 default';
 }
 
 function renderError(el, cleanValue) {
@@ -68,7 +68,7 @@ function renderError(el, cleanValue) {
     const brandBoiler = el.dataset.brand;
     const model = Object.keys(base[brandBoiler][errorId]);
     const errorDiv = document.querySelector('.error-select');
-    errorDiv.innerHTML = '';
+    errorDiv.innerHTML = '<option disabled selected value="1 default">-- выберите --</option>';
     model.forEach(errors => {
         if (base[brandBoiler][errorId][errors]["remade"]) {
             const nameKey = base[brandBoiler][errorId][errors]["remade"];
@@ -78,7 +78,7 @@ function renderError(el, cleanValue) {
         }
     });
     sortOption('error');
-    errorDiv.value = '';
+    errorDiv.value = '1 default';
 }
 
 function renderErrorDescription(arg1, arg2, arg3, arg4, arg5, arg6) {
